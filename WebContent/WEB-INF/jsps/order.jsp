@@ -24,19 +24,19 @@
 						<h3>Customer Info:</h3>
 						<table>
 							<tr>
-								<td>Name</td>
+								<td>Name:</td>
 								<td>${name}</td>
 							</tr>
 							<tr>
-								<td>Mobile</td>
+								<td>Mobile:</td>
 								<td>${mobile}</td>
 							</tr>
 							<tr>
-								<td>Email</td>
+								<td>Email:</td>
 								<td>${email}</td>
 							</tr>
 							<tr>
-								<td>Address</td>
+								<td>Address:</td>
 								<td>${address}</td>
 							</tr>
 						</table>
