@@ -32,10 +32,12 @@ public class RemoveFromCart extends HttpServlet{
 				// if id is valid 
 				if (index > -1) {
 					ProductDto dto = list.get(index);
-					dto.setQuantity(dto.getQuantity()-1);
+					/*dto.setQuantity(dto.getQuantity()-1);
 					if(dto.getQuantity() < 1)
-						list.remove(index);
-					session.setAttribute("cartValue", ((int)session.getAttribute("cartValue"))-dto.getPrice());
+						list.remove(index);*/
+					session.setAttribute("cartValue", ((int)session.getAttribute("cartValue"))-dto.getPrice()*dto.getQuantity());
+					list.remove(index);
+					
 					flag = false;
 					resp.sendRedirect("cart");
 				}
