@@ -99,7 +99,7 @@ public class ProductDao {
 
 	public static boolean addProduct(String pname, String pdetails, int pprice, String imageLink) {
 		try {
-			PreparedStatement pst = CommonDao.getConnection().prepareStatement("INSERT INTO products(name, details, price, imageLink) VALUES(?, ?, ?, ?)");
+			PreparedStatement pst = CommonDao.getConnection().prepareStatement(SqlStrings.addNewProduct);
 			pst.setString(1, pname);pst.setString(2, pdetails);pst.setInt(3, pprice);pst.setString(4, imageLink);
 			if(pst.executeUpdate() > 0) return true;
 		} catch (SQLException e) {

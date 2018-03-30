@@ -74,7 +74,7 @@ public class OrderDao {
 	public static OrderDto getOrder(int id) {
 		if (id > 0) {
 			try {
-				PreparedStatement ps = CommonDao.getConnection().prepareStatement("SELECT `totalAmount`, `cust_name`, `cust_email`, `cust_mobile`, `cust_address` FROM `orders` WHERE id = ?");
+				PreparedStatement ps = CommonDao.getConnection().prepareStatement(SqlStrings.getOrderDetails);
 				ps.setInt(1, id);
 				ResultSet rs = ps.executeQuery();
 				if (rs.next()) {
@@ -90,7 +90,7 @@ public class OrderDao {
 	public static ArrayList<ProductDto> getOrder_productList(int orderid) {
 		if (orderid > 0) {
 			try {
-				PreparedStatement pst = CommonDao.getConnection().prepareStatement(SqlStrings.getOrderDetails);
+				PreparedStatement pst = CommonDao.getConnection().prepareStatement(SqlStrings.getOrder_productList);
 				pst.setInt(1, orderid);
 				ResultSet rs = pst.executeQuery();
 				ArrayList<ProductDto> list = new ArrayList<>();

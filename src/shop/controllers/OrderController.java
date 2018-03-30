@@ -31,7 +31,7 @@ public class OrderController extends HttpServlet{
 			OrderDto orderDto =OrderDao.getOrder(Integer.parseInt(id));
 			ArrayList<ProductDto> productList = OrderDao.getOrder_productList(Integer.parseInt(id));
 			if (orderDto != null && productList != null) {
-				req.setAttribute("name", orderDto.getCust_name());req.setAttribute("mobile", orderDto.getCust_mobile());req.setAttribute("email", orderDto.getCust_email());req.setAttribute("address", orderDto.getCust_address());req.setAttribute("totalAmount", orderDto.getTotalAmount());
+				req.setAttribute("name", orderDto.getCust_name());req.setAttribute("totalAmount", orderDto.getTotalAmount());req.setAttribute("mobile", orderDto.getCust_mobile());req.setAttribute("email", orderDto.getCust_email());req.setAttribute("address", orderDto.getCust_address());
 				req.setAttribute("productList", productList);
 				req.getRequestDispatcher("WEB-INF/jsps/order.jsp").forward(req, resp);
 			}else resp.sendRedirect("_404");

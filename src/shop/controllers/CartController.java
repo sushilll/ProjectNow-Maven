@@ -28,21 +28,30 @@ public class CartController extends HttpServlet{
 		// check cart exists???
 		if (session.getAttribute("cart") != null && ((ArrayList<ProductDto>)session.getAttribute("cart")).size() > 0) {
 			// get params to change quan
-			int hiddenId = Integer.parseInt(req.getParameter("hiddenId"));
-			int quan = Integer.parseInt(req.getParameter("quan"));
-			if (quan > 0) {
-				ArrayList<ProductDto> list = (ArrayList<ProductDto>)session.getAttribute("cart");
-				ProductDto dto = list.get(list.indexOf(new ProductDto(hiddenId)));
-				int oldQ = dto.getQuantity();
-				dto.setQuantity(quan);
-				// change cartValue
-				int diff = quan-oldQ;
-				session.setAttribute("cartValue", (int)session.getAttribute("cartValue")+diff*dto.getPrice());
+			String hiddenIdParam = req.getParameter("hiddenId");
+			String quanParam = req.getParameter("quan");
+			if (!hiddenIdParam.equals("") && !quanParam.equals("")) {
+				try{
+					int hiddenId = Integer.parseInt(hiddenIdParam);
+					int quan = Integer.parseInt(quanParam);
+					if (quan > 0) {
+						ArrayList<ProductDto> list = (ArrayList<ProductDto>)session.getAttribute("cart");
+						ProductDto dto = list.get(list.indexOf(new ProductDto(hiddenId)));
+						int oldQ = dto.getQuantity();
+						dto.setQuantity(quan);
+						// change cartValue
+						int diff = quan-oldQ;
+						session.setAttribute("cartValue", (int)session.getAttribute("cartValue")+diff*dto.getPrice());
+					}
+				}
+				catch(Exception e){
+
+				}
 			}
 			req.getRequestDispatcher("WEB-INF/jsps/cart.jsp").forward(req, resp);
 		}else{
 			resp.sendRedirect("home");
 		}
-		
+
 	}
 }
